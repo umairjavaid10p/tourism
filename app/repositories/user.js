@@ -46,5 +46,9 @@ function create(payload) {
 }
 
 function getUsersList() {
-    return models.user.findAll();
+    return models.user.findAll({
+        include :{
+            model: models.role
+        }
+    });
 }

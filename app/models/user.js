@@ -42,21 +42,24 @@ module.exports = function (sequelize, DataTypes) {
         updatedAt: {
             type: DataTypes.DATE,
             field: 'updated_at'
+        },
+        deletedAt: {
+            type: DataTypes.DATE,
+            field: 'deleted_at'
         }
     }, {
         classMethods: {
             associate: function (models) {
-                this.belongsTo(models['role'], {foreignKey: 'role_id'});
+                this.belongsTo(models['role'], {foreignKey: 'roleId'});
             }
         },
         instanceMethods: {
             toJSON: function () {
-                let privateAttributes = ['password', 'passwordSalt', 'deleted_at', 'created_at', 'updated_at', 'role_id'];
+                let privateAttributes = ['password', 'passwordSalt', 'deletedAt'];
                 return _.omit(this.dataValues, privateAttributes);
             }
         },
         timestamps: true,
-        paranoid: true,
-        underscored: true
+        paranoid: true
     });
 };

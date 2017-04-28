@@ -29,7 +29,8 @@ function isAuthenticated (req, res, next) {
             if (!data) {
                 next(new errors.UnauthorizedError(userMessages.token.invalid));
             }
-            req.currentUser = data.dataValues;
+
+            req.currentUser = data.toJSON();
             req.currentUserTokenInfo = tokenInfo;
             return next();
         });
