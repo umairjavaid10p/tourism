@@ -3,12 +3,13 @@
 const errors = require('restify-errors');
 const userMessages = require('../messages/user');
 const authHelper = require('../helpers/auth');
-const authConstants = require('../constants/user');
+const userConstants = require('../constants/user');
 const userRepo = require('../repositories/user');
 const _ = require('lodash');
 
 module.exports = {
-    isAuthenticated
+    isAuthenticated,
+    allowedRole
 };
 
 function isAuthenticated (req, res, next) {
@@ -29,7 +30,6 @@ function isAuthenticated (req, res, next) {
             if (!data) {
                 next(new errors.UnauthorizedError(userMessages.token.invalid));
             }
-
             req.currentUser = data.toJSON();
             req.currentUserTokenInfo = tokenInfo;
             return next();
@@ -38,14 +38,25 @@ function isAuthenticated (req, res, next) {
 
     function _unauthorized (error) {
         switch (error.name) {
-            case authConstants.token.invalid:
+            case userConstants.token.invalid:
                 next(new errors.UnauthorizedError(userMessages.token.invalid));
                 break;
-            case authConstants.token.expired:
+            case userConstants.token.expired:
                 next(new errors.UnauthorizedError(userMessages.token.expired));
                 break;
             default:
                 next(new errors.ForbiddenError(error.message));
         }
+    }
+}
+
+function allowedRole (role) {
+    return function (req, res, next) {
+        console.log(req.currentUser.role.name, role, "------------------- 1q ---------------")
+        if (req.currentUser.role.name === role) {
+            return next();
+        }
+
+        next(new errors.UnauthorizedError(userMessages.notAllowed))
     }
 }

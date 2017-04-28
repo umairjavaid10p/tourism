@@ -11,16 +11,12 @@ module.exports = {
         consumer: 'consumer'
     },
     userRole: {
-        guest: {
-            name: 'guest',
-            id: 4
-        },
         user: {
-            name: 'expert',
+            name: 'user',
             id: 3
         },
         admin: {
-            name: 'superAdmin',
+            name: 'admin',
             id: 1
         }
     },

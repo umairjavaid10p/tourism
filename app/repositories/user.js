@@ -29,6 +29,9 @@ function findByEmail(email) {
     return models.user.find({
         where: {
             email: email
+        },
+        include :{
+            model: models.role
         }
     });
 }
@@ -37,6 +40,9 @@ function findById(id) {
     return models.user.find({
         where: {
             id: id
+        },
+        include :{
+            model: models.role
         }
     });
 }
