@@ -1,0 +1,71 @@
+{
+  "name": "Tourism",
+  "author": "Muhammad Umair Javaid",
+  "description": "Tourism API",
+  "version": "1.0.0",
+  "private": true,
+  "main": "app/server.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/umairjavaid10p/tourism.git"
+  },
+  "dependencies": {
+    "azure-storage": "^0.9.0",
+    "bcryptjs": "^2.3.0",
+    "bunyan": "^1.5.1",
+    "bunyan-loggly": "^1.0.0",
+    "convict": "^1.0.2",
+    "cors": "^2.7.1",
+    "ejs": "^2.4.2",
+    "es6-promisify": "^5.0.0",
+    "googleapis": "^15.0.0",
+    "image-size": "^0.4.0",
+    "jsonwebtoken": "^5.5.0",
+    "lodash": "^4.5.0",
+    "mkdirp": "^0.5.1",
+    "moment": "^2.11.1",
+    "mysql": "^2.11.1",
+    "newrelic": "^1.28.3",
+    "node-uuid": "^1.4.7",
+    "request": "^2.67.0",
+    "restify": "^4.0.3",
+    "restify-errors": "^4.3.0",
+    "revalidator": "git+https://git@github.com/ali-yousuf-10p/revalidator.git",
+    "sendgrid": "^3.0.7",
+    "sequelize": "^3.24.3",
+    "sequelize-cli": "^2.4.0",
+    "sequelize-mysql": "^1.7.0",
+    "sharp": "^0.15.0"
+  },
+  "devDependencies": {
+    "abracadabra": "^0.2.1",
+    "chai": "^3.4.1",
+    "chai-as-promised": "^5.2.0",
+    "chance": "^0.8.0",
+    "eslint": "^1.10.3",
+    "mocha": "^2.3.4",
+    "nodemon": "^1.8.1",
+    "shipit-cli": "^1.4.1",
+    "shipit-deploy": "^2.1.2",
+    "sinon": "^1.17.2",
+    "sinon-as-promised": "^4.0.0"
+  },
+  "scripts": {
+    "start": "nodemon app/server.js | bunyan",
+    "test": "mocha app/tests/unit",
+    "lint": "eslint app/ --ignore-pattern app/apidoc",
+    "doc": "apidoc -i app/controllers -o app/apidoc",
+    "migration-create": "mm create $NAME --config app/config/migration.js",
+    "migration-up": "mm migrate --config app/config/migration.js",
+    "ssh-staging": "ssh -i keys/staging.pem fma@ssh-staging.findmyadventure.pk",
+    "ssh-production": "ssh -i keys/production.pem fma@ssh.findmyadventure.pk"
+  },
+  "apidoc": {
+    "title": "FindMyAdventure API Documentation",
+    "description": "",
+    "sampleUrl": false
+  },
+  "pre-commit": [
+    "lint"
+  ]
+}
