@@ -12,12 +12,10 @@ module.exports = {
     },
     userRole: {
         user: {
-            name: 'user',
-            id: 3
+            name: 'user'
         },
         admin: {
-            name: 'admin',
-            id: 1
+            name: 'admin'
         }
     },
     token: {

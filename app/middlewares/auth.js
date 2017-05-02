@@ -52,7 +52,6 @@ function isAuthenticated (req, res, next) {
 
 function allowedRole (role) {
     return function (req, res, next) {
-        console.log(req.currentUser.role.name, role, "------------------- 1q ---------------")
         if (req.currentUser.role.name === role) {
             return next();
         }
