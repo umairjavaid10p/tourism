@@ -2,18 +2,14 @@
 const _ = require('lodash');
 
 module.exports = function (sequelize, DataTypes) {
-    return sequelize.define('role', {
+    return sequelize.define('state', {
         name: {
             type: DataTypes.STRING,
             field: 'name'
         },
-        createdAt: {
-            type: DataTypes.DATE,
-            field: 'created_at'
-        },
-        updatedAt: {
-            type: DataTypes.DATE,
-            field: 'updated_at'
+        countryId: {
+            type: DataTypes.INTEGER,
+            field: 'country_id'
         },
         deletedAt: {
             type: DataTypes.DATE,
@@ -21,15 +17,17 @@ module.exports = function (sequelize, DataTypes) {
         }
     }, {
         classMethods: {
-
+            associate: function (models) {
+                this.belongsTo(models['country'], {foreignKey: 'countryId'});
+            }
         },
         instanceMethods: {
             toJSON: function () {
-                let privateAttributes = ['createdAt', 'updatedAt', 'deletedAt'];
+                let privateAttributes = ['deletedAt'];
                 return _.omit(this.dataValues, privateAttributes);
             }
         },
-        timestamps: true,
+        timestamps: false,
         paranoid: true
     });
 };
