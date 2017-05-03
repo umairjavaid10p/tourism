@@ -10,7 +10,7 @@ module.exports = {
           },
           name: Sequelize.STRING,
           description: Sequelize.STRING,
-          is_approved: Sequelize.BOOL,
+          is_approved: Sequelize.BOOLEAN,
           location_id: Sequelize.INTEGER,
           created_at: Sequelize.DATE,
           updated_at: Sequelize.DATE,

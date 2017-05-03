@@ -16,7 +16,7 @@ module.exports = {
           country_id: Sequelize.INTEGER,
           state_id: Sequelize.INTEGER,
           city_id: Sequelize.INTEGER,
-          is_approved: Sequelize.BOOL,
+          is_approved: Sequelize.BOOLEAN,
           created_at: Sequelize.DATE,
           updated_at: Sequelize.DATE,
           deleted_at: Sequelize.DATE
