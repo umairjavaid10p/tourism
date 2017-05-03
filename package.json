@@ -64,8 +64,5 @@
     "title": "FindMyAdventure API Documentation",
     "description": "",
     "sampleUrl": false
-  },
-  "pre-commit": [
-    "lint"
-  ]
+  }
 }

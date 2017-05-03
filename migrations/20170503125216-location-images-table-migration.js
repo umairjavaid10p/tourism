@@ -2,20 +2,15 @@
 
 module.exports = {
   up: function (queryInterface, Sequelize) {
-      return queryInterface.createTable('locations', {
+      return queryInterface.createTable('location_images', {
           id: {
               type: Sequelize.INTEGER,
               primaryKey: true,
               autoIncrement: true
           },
           name: Sequelize.STRING,
-          small_description: Sequelize.STRING,
-          description: Sequelize.STRING,
-          latitude: Sequelize.STRING,
-          longitude: Sequelize.STRING,
-          country_id: Sequelize.INTEGER,
-          state_id: Sequelize.INTEGER,
-          city_id: Sequelize.INTEGER,
+          path: Sequelize.STRING,
+          location_id: Sequelize.INTEGER,
           is_approved: Sequelize.BOOL,
           created_at: Sequelize.DATE,
           updated_at: Sequelize.DATE,
@@ -24,6 +19,6 @@ module.exports = {
   },
 
   down: function (queryInterface, Sequelize) {
-      return queryInterface.dropTable('locations');
+      return queryInterface.dropTable('location_images');
   }
 };
